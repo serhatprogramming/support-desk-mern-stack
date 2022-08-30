@@ -1,6 +1,4 @@
 import axios from "axios";
-import { toast } from "react-toastify";
-
 const API_URL = "/api/users/";
 
 // register user
@@ -16,11 +14,8 @@ const register = async (userData) => {
 // login user
 const login = async (userData) => {
   const response = await axios.post(API_URL + "login", userData);
-
-  if (!response.data.message === "Invalid Credentials") {
+  if (response.data.user) {
     localStorage.setItem("user", JSON.stringify(response.data));
-  } else {
-    toast.error("invalid credentials");
   }
   return response.data;
 };

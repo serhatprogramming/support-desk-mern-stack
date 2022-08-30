@@ -3,7 +3,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const User = require("../models/userModel");
-const e = require("express");
 
 // @desc    Register a new user
 // @route   /api/users
@@ -67,7 +66,7 @@ const loginUser = asyncHandler(async (req, res) => {
       token: generateToken(user._id),
     });
   } else {
-    res.status(200);
+    res.status(401);
     throw new Error("Invalid Credentials");
   }
 });
